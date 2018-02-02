@@ -6,10 +6,9 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-from douban.Tools.deal_ip import product_xiongmao_ip
-from http import cookiejar
+from douban.Tools.return_ip import product_xiongmao_ip
 from .Tools.get_ua import ua
-import requests,random,json
+
 
 
 class DoubanSpiderMiddleware(object):
@@ -67,15 +66,12 @@ class RandomUAMiddlerware(object):
         super(RandomUAMiddlerware,self).__init__()
         self.ua = ua()
 
-
     @classmethod
     def from_crawler(cls,crawler):
         return cls(crawler)
 
     def process_request(self,spider,request):
         request.headers.setdefault(b'User-Agent',self.ua)
-
-
 
 
 class RandomProxyIPMiddlware(object):

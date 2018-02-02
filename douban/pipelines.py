@@ -69,9 +69,9 @@ class MysqlPipeline(object):
         self.cursor = self.conn.cursor()
 
     def process_item(self, item, spider):
-        inser_sql,params = item.get_sql()
+        insert_sql,params = item.get_sql()
         print(params)
-        self.cursor.execute(inser_sql,params)
+        self.cursor.execute(insert_sql,params)
         self.conn.commit()
         return item
 

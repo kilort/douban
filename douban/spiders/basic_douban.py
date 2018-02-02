@@ -9,7 +9,6 @@ from scrapy.loader import ItemLoader
 from douban.Utills.comment import get_md5
 import datetime
 from scrapy_redis.spiders import RedisSpider
-from douban.Tools.deal_ip import return_txt
 
 
 
