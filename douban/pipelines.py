@@ -6,9 +6,8 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 import codecs,json
-import MySQLdb
+import pymysql
 from twisted.enterprise import adbapi
-import MySQLdb.cursors
 import datetime
 import pymysql.cursors
 from douban.settings import *
@@ -29,10 +28,10 @@ class MysqlTwistedPipeline(object):
             user = settings["MYSQL_USER"],
             password = settings["MYSQL_PASSWORD"],
             charset = "utf8mb4",
-            cursorclass = MySQLdb.cursors.DictCursor,
+            cursorclass = pymysql.cursors.DictCursor,
             use_unicode = True,
         )
-        dbpool = adbapi.ConnectionPool("MySQLdb",**dbparms)
+        dbpool = adbapi.ConnectionPool("pymysql",**dbparms)
         return cls(dbpool)
 
 
@@ -55,25 +54,25 @@ class MysqlTwistedPipeline(object):
         cursor.execute(insert_sql,params)
 
 
-
-class MysqlPipeline(object):
-    #采用同步的机制写入mysql
-    def __init__(self):
-        self.conn = MySQLdb.connect(
-            host = MYSQL_HOST,
-            db = MYSQL_DBNAME,
-            user = MYSQL_USER,
-            password = MYSQL_PASSWORD,
-            charset = "utf8",
-            use_unicode=True)
-        self.cursor = self.conn.cursor()
-
-    def process_item(self, item, spider):
-        insert_sql,params = item.get_sql()
-        print(params)
-        self.cursor.execute(insert_sql,params)
-        self.conn.commit()
-        return item
+#
+# class MysqlPipeline(object):
+#     #采用同步的机制写入mysql
+#     def __init__(self):
+#         self.conn = pymysql.connect(
+#             host = MYSQL_HOST,
+#             db = MYSQL_DBNAME,
+#             user = MYSQL_USER,
+#             password = MYSQL_PASSWORD,
+#             charset = "utf8",
+#             use_unicode=True)
+#         self.cursor = self.conn.cursor()
+#
+#     def process_item(self, item, spider):
+#         insert_sql,params = item.get_sql()
+#         print(params)
+#         self.cursor.execute(insert_sql,params)
+#         self.conn.commit()
+#         return item
 
 
 
