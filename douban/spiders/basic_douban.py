@@ -12,11 +12,11 @@ from scrapy_redis.spiders import RedisSpider
 
 
 
-class BasicDoubanSpider(RedisSpider):
+class BasicDoubanSpider(scrapy.Spider):
     name = 'basic_douban'
     redis_key = 'DouBan:start_urls'
     # allowed_domains = ['www.douban.com']
-    # start_urls = [  'https://music.douban.com/tag/',#音乐所有分类
+    start_urls = [  'https://music.douban.com/tag/',]#音乐所有分类
     #                 'https://movie.douban.com/tag/#/',#电影所有分类
     #                 'https://book.douban.com/tag/?view=type&icn=index-sorttags-all',#书所有分类
     #                 ]
@@ -57,13 +57,13 @@ class BasicDoubanSpider(RedisSpider):
                 detial_url = detial_url["url"]
                 if detial_url:
                     yield Request(url =detial_url,callback=self.get_data,meta={'cookiejar':response.meta["cookiejar"],'tag1':tag1,'tag2':'{0}'.format(movie_tag)})
-            start = re.match(r'.*start=(\d+)',response.url)
-            if start:
-                num = str(int(start.group(1))+20)
-                page =re.compile('start=\d+')
-                next_movie_api =page.sub('start={0}'.format(num),response.url)
-                if next_movie_api:
-                    yield Request(url=next_movie_api,callback=self.parse_detial,meta={'cookiejar':response.meta["cookiejar"]})
+                    start = re.match(r'.*start=(\d+)',response.url)
+                    if start:
+                        num = str(int(start.group(1))+20)
+                        page =re.compile('start=\d+')
+                        next_movie_api =page.sub('start={0}'.format(num),response.url)
+                        if next_movie_api:
+                            yield Request(url=next_movie_api,callback=self.parse_detial,meta={'cookiejar':response.meta["cookiejar"]})
 
         else:
             anthor_tag = re.compile('tag/(.*?)($|\?.*)').findall(response.url)

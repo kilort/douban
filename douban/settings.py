@@ -28,8 +28,10 @@ REDIRECT_ENABLED = False#禁止重定向
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 1
 DOWNLOAD_TIMEOUT = 10
+RETRY_TIMES =8
+CONCURRENT_REQUESTS =20
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -101,7 +103,7 @@ ERROR_DATETIME = "1888-8-8"
 DATETIME_TYPE2 = "%Y-%m-%d %H:%M:%S"
 MYSQL_HOST = "172.17.0.1"
 MYSQL_DBNAME = "douban"
-MYSQL_USER = "docker"#需要更改
+MYSQL_USER = "docker1"#需要更改
 MYSQL_PASSWORD = "123123"
 
 #scrapy_redis

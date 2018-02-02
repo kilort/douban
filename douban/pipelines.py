@@ -39,6 +39,7 @@ class MysqlTwistedPipeline(object):
         #调用twisted的api实现异步插入
         query = self.dbpool.runInteraction(self.do_insert,item)
         query.addErrback(self.handle_err,item,spider)
+        return item
 
     def handle_err(self,failure,item,spider):
         print(failure)
@@ -50,29 +51,28 @@ class MysqlTwistedPipeline(object):
 
         #plan 2 见items
         insert_sql,params =item.get_sql()
-        print(params)
         cursor.execute(insert_sql,params)
 
 
 #
-# class MysqlPipeline(object):
-#     #采用同步的机制写入mysql
-#     def __init__(self):
-#         self.conn = pymysql.connect(
-#             host = MYSQL_HOST,
-#             db = MYSQL_DBNAME,
-#             user = MYSQL_USER,
-#             password = MYSQL_PASSWORD,
-#             charset = "utf8",
-#             use_unicode=True)
-#         self.cursor = self.conn.cursor()
-#
-#     def process_item(self, item, spider):
-#         insert_sql,params = item.get_sql()
-#         print(params)
-#         self.cursor.execute(insert_sql,params)
-#         self.conn.commit()
-#         return item
+class MysqlPipeline(object):
+    #采用同步的机制写入mysql
+    def __init__(self):
+        self.conn = pymysql.connect(
+            host = MYSQL_HOST,
+            db = MYSQL_DBNAME,
+            user = MYSQL_USER,
+            password = MYSQL_PASSWORD,
+            charset = "utf8",
+            use_unicode=True)
+        self.cursor = self.conn.cursor()
+
+    def process_item(self, item, spider):
+        insert_sql,params = item.get_sql()
+        print(params)
+        self.cursor.execute(insert_sql,params)
+        self.conn.commit()
+        return item
 
 
 
