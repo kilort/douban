@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="337e2bcc-e932-4c41-baec-47e022c372d7" name="Default" comment="">
+    <list default="true" id="337e2bcc-e932-4c41-baec-47e022c372d7" name="Default" comment="douban">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/douban/Tools/analysis_urls.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/douban/Tools/get_ua_text.py" afterPath="$PROJECT_DIR$/douban/Tools/get_ua_text.py" />
-      <change beforePath="$PROJECT_DIR$/douban/Tools/return_ip.py" afterPath="$PROJECT_DIR$/douban/Tools/return_ip.py" />
-      <change beforePath="$PROJECT_DIR$/douban/Tools/test_data.py" afterPath="$PROJECT_DIR$/douban/Tools/test_data.py" />
-      <change beforePath="$PROJECT_DIR$/douban/Tools/test_ip.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/douban/Utills/comment.py" afterPath="$PROJECT_DIR$/douban/Utills/comment.py" />
-      <change beforePath="$PROJECT_DIR$/douban/items.py" afterPath="$PROJECT_DIR$/douban/items.py" />
-      <change beforePath="$PROJECT_DIR$/douban/middlewares.py" afterPath="$PROJECT_DIR$/douban/middlewares.py" />
-      <change beforePath="$PROJECT_DIR$/douban/pipelines.py" afterPath="$PROJECT_DIR$/douban/pipelines.py" />
-      <change beforePath="$PROJECT_DIR$/douban/settings.py" afterPath="$PROJECT_DIR$/douban/settings.py" />
-      <change beforePath="$PROJECT_DIR$/douban/spiders/basic_douban.py" afterPath="$PROJECT_DIR$/douban/spiders/basic_douban.py" />
-      <change beforePath="$PROJECT_DIR$/douban/spiders/crawl_douban.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change beforePath="$PROJECT_DIR$/tips.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/Tools/analysis_urls.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/Tools/get_ip.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/Tools/test.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/Tools/test_data.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/Tools/test_ip.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/Utills/comment.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/items.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/middlewares.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/pipelines.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/settings.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/spiders/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/spiders/basic_douban.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/douban/spiders/crawl_douban.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/douban/tips.txt" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/douban/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="455">
-              <caret line="114" column="18" lean-forward="true" selection-start-line="114" selection-start-column="18" selection-end-line="114" selection-end-column="18" />
+              <caret line="114" column="18" lean-forward="false" selection-start-line="114" selection-start-column="18" selection-end-line="114" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -54,7 +55,7 @@
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="72">
-              <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+              <caret line="4" column="42" lean-forward="false" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -118,16 +119,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="get_ua_text.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/douban/Tools/get_ua_text.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="3" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="comment.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/douban/Utills/comment.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -170,6 +161,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -241,24 +233,6 @@
               <item name="douban" type="b2602c69:ProjectViewProjectNode" />
               <item name="douban" type="462c0819:PsiDirectoryNode" />
               <item name="douban" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="douban" type="b2602c69:ProjectViewProjectNode" />
-              <item name="douban" type="462c0819:PsiDirectoryNode" />
-              <item name="douban" type="462c0819:PsiDirectoryNode" />
-              <item name="spiders" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="douban" type="b2602c69:ProjectViewProjectNode" />
-              <item name="douban" type="462c0819:PsiDirectoryNode" />
-              <item name="douban" type="462c0819:PsiDirectoryNode" />
-              <item name="Tools" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="douban" type="b2602c69:ProjectViewProjectNode" />
-              <item name="douban" type="462c0819:PsiDirectoryNode" />
-              <item name="douban" type="462c0819:PsiDirectoryNode" />
-              <item name="Utills" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -447,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1517549798565</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="douban">
+      <created>1517804063847</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1517804063847</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -526,7 +507,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/douban/Tools/0_cookie.txt" />
     <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/scrapy/http/request/rpc.py" />
     <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/scrapy/http/request/form.py" />
     <entry file="file://$PROJECT_DIR$/douban/Tools/cookie.txt" />
@@ -603,7 +583,7 @@
         <state relative-caret-position="-252">
           <caret line="112" column="83" lean-forward="true" selection-start-line="112" selection-start-column="83" selection-end-line="112" selection-end-column="83" />
           <folding>
-            <element signature="e#24#37#0" expanded="true" />
+            <element signature="e#24#37#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -693,7 +673,15 @@
     <entry file="file://$PROJECT_DIR$/douban/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="455">
-          <caret line="114" column="18" lean-forward="true" selection-start-line="114" selection-start-column="18" selection-end-line="114" selection-end-column="18" />
+          <caret line="114" column="18" lean-forward="false" selection-start-line="114" selection-start-column="18" selection-end-line="114" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/douban/tips.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -701,7 +689,7 @@
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
-          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+          <caret line="4" column="42" lean-forward="false" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
