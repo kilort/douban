@@ -12,7 +12,7 @@ import datetime
 import pymysql.cursors
 from douban.settings import *
 
-
+#异步插入mysql
 class MysqlTwistedPipeline(object):
     #通过twisted框架调用adbapi实现异步的数据写入
     def __init__(self,dbpool):
@@ -54,7 +54,7 @@ class MysqlTwistedPipeline(object):
         cursor.execute(insert_sql,params)
 
 
-#
+#同步插入mysql
 class MysqlPipeline(object):
     #采用同步的机制写入mysql
     def __init__(self):

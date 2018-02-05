@@ -10,16 +10,16 @@ from douban.Utills.comment import get_md5
 import datetime
 from scrapy_redis.spiders import RedisSpider
 
+'''抓取douban music，book，movie的数据'''
 
-
-class BasicDoubanSpider(scrapy.Spider):
+class BasicDoubanSpider(RedisSpider):
     name = 'basic_douban'
-    redis_key = 'DouBan:start_urls'
+    redis_key = 'DouBan:start_urls'#redis中的启始url
     # allowed_domains = ['www.douban.com']
-    start_urls = [  'https://music.douban.com/tag/',]#音乐所有分类
-    #                 'https://movie.douban.com/tag/#/',#电影所有分类
-    #                 'https://book.douban.com/tag/?view=type&icn=index-sorttags-all',#书所有分类
-    #                 ]
+    # start_urls = [  'https://music.douban.com/tag/',]#音乐所有分类
+    # #                 'https://movie.douban.com/tag/#/',#电影所有分类
+    # #                 'https://book.douban.com/tag/?view=type&icn=index-sorttags-all',#书所有分类
+    # #                 ]
 
     def parse(self, response):
         if 'movie' in response.url:
@@ -43,13 +43,14 @@ class BasicDoubanSpider(scrapy.Spider):
                         key_url = key_url[0]
                         yield Request(url=key_url, callback=self.parse_detial,meta={'cookiejar':1})
 
-
+    #下一页递归，详细数据url交给下个函数处理
     def parse_detial(self,response):
         if 'movie' in response.url:
             tag1='movie'
             movie_json = json.loads(response.text)
             movie_tag = re.compile('.*&tags=(.*?)&.*').findall(response.url)
             if movie_tag:
+                #提取url中的分类名
                 movie_tag = parse.unquote(movie_tag[0])
             else:
                 movie_tag="None"
@@ -86,7 +87,7 @@ class BasicDoubanSpider(scrapy.Spider):
                 next_url = parse.urljoin(response.url,next_url[0])
                 yield Request(url=next_url,callback=self.parse_detial,meta={'cookiejar':response.meta["cookiejar"]})
 
-
+    #通过itemloader对数据提取
     def get_data(self,response):
         if response.meta["tag1"] == 'movie':
             movie_item_loader =ItemLoader(item=DoubanMovieItem(),response=response)
@@ -113,7 +114,7 @@ class BasicDoubanSpider(scrapy.Spider):
             book_item_loader.add_value('book_url', response.url)
             book_item_loader.add_value('book_url_id', get_md5(response.url))
             book_item_loader.add_xpath('book', '//div[@id="wrapper"]/h1/span/text()')
-            book_item_loader.add_value('book_writer',re.compile('作者</span>.*?<a.*?>(.*?)<',re.DOTALL).findall(response.text))
+            book_item_loader.add_value('book_writer',re.compile('作者</span>.*?<a.*?>(.*?)<|作者:</span>.*?<a.*?>(.*?)<',re.DOTALL).findall(response.text))
             book_item_loader.add_value('book_classify',response.meta.get("tag2",""))
             book_item_loader.add_value('book_publisher',re.compile('出版社:.*?>(.*?)<',re.DOTALL).findall(response.text))
             book_item_loader.add_value('book_publish_time',re.compile('出版年:.*?>(.*?)<',re.DOTALL).findall(response.text))

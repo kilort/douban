@@ -20,8 +20,10 @@ def delete_useless_str(obj):
 		nbsp = '&nbsp;'
 		if nbsp in obj:
 			str = obj.replace(nbsp, "").strip()
+			str = obj.replace(" ",'')
 		else:
 			str = obj.strip()
+			str = obj.replace(" ", '')
 		return str
 	else:
 		return "None"
@@ -121,7 +123,34 @@ def get_date(obj):
 		return datetime.datetime.strptime(ERROR_DATETIME, DATETIME_TYPE).date()
 
 
+#获取作者
+def get_writer(obj):
+	if isinstance(obj,list):
+		if len(obj)==1:
+			if len(obj[0][0])>len(obj[0][1]):
+				str = delete_useless_str(obj[0][0])
+			elif len(obj[0][0])<len(obj[0][1]):
+				str = delete_useless_str(obj[0][0])
+			else:
+				str = delete_useless_str(obj[0][0])
+			return str
 
-# print(str_book_date(pop_nbsp(get_ration_element(['&nbsp; 2017-4\n     ']))))
-print(get_date(["1412-"]))
-# print(get_num(["32131313"]))
+		if len(obj)>=2:
+			if len(obj[0][0])>len(obj[0][1]):
+				str1 = delete_useless_str(obj[0][0])
+			elif len(obj[0][0])<len(obj[0][1]):
+				str1 = delete_useless_str(obj[0][0])
+			else:
+				str1 = delete_useless_str(obj[0][0])
+
+			if len(obj[1][0])>len(obj[1][1]):
+				str2 = delete_useless_str(obj[1][0])
+			elif len(obj[1][0])<len(obj[1][1]):
+				str2 = delete_useless_str(obj[1][0])
+			else:
+				str2 = delete_useless_str(obj[1][0])
+			str1,str2 =delete_useless_str(obj[0]),delete_useless_str(obj[1])
+			str ="{0},{1}".format(str1,str2)
+			return str
+	else:
+		return "None"

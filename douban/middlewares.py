@@ -60,7 +60,7 @@ class DoubanSpiderMiddleware(object):
 
 
 
-
+#随机生成ua，并调用
 class RandomUAMiddlerware(object):
     def __init__(self,crawler):
         super(RandomUAMiddlerware,self).__init__()
@@ -73,20 +73,12 @@ class RandomUAMiddlerware(object):
     def process_request(self,spider,request):
         request.headers.setdefault(b'User-Agent',self.ua)
 
-
+#生成proxy并调用
 class RandomProxyIPMiddlware(object):
     def process_request(self, request, spider):
         proxy =product_xiongmao_ip()
         print(proxy)
         request.meta["proxy"] = proxy
-
-    def process_response(self, request, response, spider):
-        if response.status != 200:
-            proxy =product_xiongmao_ip()
-            print(proxy)
-            request.meta["proxy"] = proxy
-            return request
-        return response
 
 
 

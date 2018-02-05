@@ -30,7 +30,7 @@ class DoubanMovieItem(scrapy.Item):
     movie_crawl_update_time = scrapy.Field()
 
 
-
+    #对itemloader生成额的movie数据精加工并插入到数据库
     def get_sql(self):
         insert_sql = '''
                       insert into movie(
@@ -84,6 +84,7 @@ class DoubanBookItem(scrapy.Item):
     book_update_time = scrapy.Field()
 
 
+    # 对itemloader生成额的book数据精加工并插入到数据库
     def get_sql(self):
         insert_sql = '''
                       insert into book(
@@ -96,7 +97,7 @@ class DoubanBookItem(scrapy.Item):
         url = "".join(self.get("book_url",""))
         url_id = "".join(self.get("book_url_id",""))
         book = get_ration_element(self.get("book",""))
-        writer = get_ration_element(self.get("book_writer",""))
+        writer = get_writer(self.get("book_writer",""))
         classify = get_ration_element(self.get("book_classify",""))
         publisher = get_ration_element(self.get("book_publisher",""))
         publisher_time = get_date(self.get("book_publisher_time",""))
@@ -104,7 +105,7 @@ class DoubanBookItem(scrapy.Item):
         page = get_num1(self.get("book_pages",""))
         type = get_ration_element(self.get("book_type",""))
         ISBN = get_num1(self.get("book_ISBN",""))
-        score = get_num2(self.get("book_socre",""))
+        score = get_num2(self.get("book_score",""))
         comments_num = get_num1(self.get("book_comments_num",""))
         hot_comments = get_hot_comments(self.get("book_hot_comments",""))
         crawl_time = now()
@@ -133,6 +134,8 @@ class DoubanMusicItem(scrapy.Item):
     music_crawl_time = scrapy.Field()
     music_update_time = scrapy.Field()
 
+
+    # 对itemloader生成额的music数据精加工并插入到数据库
     def get_sql(self):
         insert_sql = '''
                       insert into music(

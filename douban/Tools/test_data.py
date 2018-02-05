@@ -63,3 +63,46 @@ for i in url:
 	# comments_num=selector.xpath('//div[@class="rating_self clearfix"]/div/div/a/span/text()').extract()
 	# hot_comments=selector.xpath('//div[@id="hot-comments"]/div/div/p/text()').extract()
 	print(music)
+
+import requests
+from scrapy.selector import Selector
+
+
+url ='https://book.douban.com/subject/26692203/'
+headers = {'User-Agent':':Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
+
+response = requests.get(url=url,headers=headers)
+# selector = Selector(text=response.text)
+# links = selector.xpath('//a/@href').extract()
+# for i in links :
+# 	print(i)
+
+
+import re
+url = ['https://book.douban.com/tag/%E6%95%A3%E6%96%87',
+	   'https://music.douban.com/tag/Electronic?start=40&type=T',
+	   'https://book.douban.com/tag/%E6%95%A3%E6%96%87?start=100&type=T']
+
+for i in url:
+	a = re.compile("tag/(.*?)($|\?.*)").findall(i)
+	print(a[0][0])
+
+print(re.compile('作者</span>.*?<a.*?>(.*?)<', re.DOTALL).findall(response.text))
+
+import requests
+from http import cookiejar
+
+session = requests.session()
+session.cookies = cookiejar.LWPCookieJar('cookie.txt')
+try:
+	session.cookies.load(ignore_discard=True)
+	proxy_dict={"http":"http://60.167.20.32:22477"}
+	response = session.get("https://movie.douban.com/subject/26612285/?from=showing",proxies = proxy_dict, headers = {"User-Agent": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/4.0; InfoPath.2; SV1; .NET CLR 2.0.50727; WOW64)"})
+	print(response.status_code)
+except:
+	proxy_dict = {"http": "http://60.167.20.32:22477"}
+	response = session.get("https://movie.douban.com/subject/26612285/?from=showing", proxies=proxy_dict, headers={
+		"User-Agent": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/4.0; InfoPath.2; SV1; .NET CLR 2.0.50727; WOW64)"})
+	session.cookies.save()
+	print(response.status_code)
+

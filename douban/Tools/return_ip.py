@@ -1,11 +1,11 @@
-import random,linecache
+import random
 
-def product_xiongmao_ip():
-    #返回熊猫代理的ip
-    ip = linecache.getline("/home/my_Tools/share_ip.txt",random.randrange(1,11))
+def product_ip():
+    #返回代理ip
+    with open("/home/my_Tools/share_ip.txt") as f:
+     ip = random.choice(f.readlines())
     proxy = "http://"+str(ip)
     return proxy
 
-
 if __name__=="__main__":
-    product_xiongmao_ip()
+    product_ip()

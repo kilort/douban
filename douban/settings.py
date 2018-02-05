@@ -19,8 +19,9 @@ NEWSPIDER_MODULE = 'douban.spiders'
 #USER_AGENT = 'douban (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = False
+ROBOTSTXT_OBEY = False#不遵守robot
 REDIRECT_ENABLED = False#禁止重定向
+COOKIE_ENABLED = False#禁用cookie
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -28,10 +29,11 @@ REDIRECT_ENABLED = False#禁止重定向
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 1
-DOWNLOAD_TIMEOUT = 10
-RETRY_TIMES =8
-CONCURRENT_REQUESTS =20
+DOWNLOAD_DELAY = 1#设置延迟
+DOWNLOAD_TIMEOUT = 20#下载超时
+RETRY_TIMES =10#重试次数
+CONCURRENT_REQUESTS =20#requests线程数
+RETRY_HTTP_CODES = [301,302,303,304,305,307,400,401,402,403,404,405,500,501,502,503,504,408]#retry的code
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -73,7 +75,6 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   # 'douban.pipelines.MysqlTwistedPipeline': 1,
 	'douban.pipelines.MysqlTwistedPipeline':1
 }
 
@@ -112,4 +113,7 @@ SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 REDIS_HOST = "172.17.0.1"
 REDIS_PORT ="6379"
+SCHEDULER_PERSIST =True#不清空队列
+SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.FifoQueue' #先进先出队列
+SCHEDULER_SERIALIZER = "scrapy_redis.picklecompat"
 
